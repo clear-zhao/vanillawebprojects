@@ -1,0 +1,340 @@
+@import "../reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #242333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+  position: relative;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.header select {
+  height: 30px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; /*不显示选择下拉按钮*/
+  padding: 5px 15px;
+}
+
+.seat {
+  width: 14px;
+  height: 12px;
+  background-color: #444451;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: 3px;
+}
+
+.seat.selected {
+  background-color: #6feaf6;
+}
+
+.seat.occupied {
+  background-color: #fff;
+}
+
+.seat:nth-child(2) {
+  margin-right: 20px;
+}
+
+.seat:nth-last-of-type(2) {
+  margin-left: 20px;
+}
+
+.seat:not(.occupied):hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.showcase .seat:not(.occupied):hover {
+  cursor: default;
+  transform: scale(1);
+}
+
+.showcase {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.showcase .case {
+  display: flex;
+  margin: 0 10px;
+  align-items: center;
+}
+
+.showcase .case .seat {
+  margin-right: 5px;
+}
+
+.container {
+  margin-bottom: 30px;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
+.container .seats .row {
+  display: flex;
+}
+
+.container .screen {
+  height: 120px;
+  background-color: white;
+  transform: rotateX(-50deg);
+  /* transform: rotateY(-30deg); */
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+/* .footer span {
+  color: #6feaf6;
+} */
+
+.footer .seat_num,
+.footer .total_price {
+  color: #6feaf6;
+}
+
+.footer span {
+  margin: 5px 5px;
+}
+
+.button {
+  margin-bottom: 30px;
+  background-color: rgba(254, 254, 254, 0.7);
+  width: 80px;
+  height: 20px;
+  border-radius: 5px;
+  color: #444451;
+  text-align: center;
+  line-height: 20px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.selected-coord {
+  margin-bottom: 30px;
+  min-height: 20px;
+}
+
+.selected-coord .coord {
+  margin: 0 5px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.hidden {
+  display: none;
+}
+
+.progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.progress .progress-text {
+  text-align: center;
+}
+
+.progress .progress-svg {
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.progress .progress-svg > circle {
+  stroke-width: 5px;
+  stroke-linecap: round;
+  fill: transparent;
+  backface-visibility: visible;
+  transform-origin: center center;
+  transform: rotate(-90deg);
+  animation: progres 5s ease-in-out forwards, rotate 1s 5s linear forwards;
+}
+
+.progress .progress-svg g path {
+  stroke-dasharray: var(--l);
+  stroke-dashoffset: var(--l);
+  animation: check 1s 6s linear forwards;
+}
+
+@keyframes progres {
+  from {
+    stroke-dasharray: 0 250;
+  }
+  to {
+    stroke-dasharray: 250 250;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(0);
+  }
+  to {
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ticket-info {
+  height: 400px;
+  width: 300px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7) inset;
+}
+
+.ticket-info .exit-ticket {
+  height: 50px;
+  width: 200px;
+  margin: 20px auto;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0);
+  border-radius: 2px;
+}
+
+.ticket-info .exit-ticket .exit {
+  height: 30px;
+  width: 180px;
+  margin: 10px auto;
+  border: 2px solid #000;
+  box-shadow: inset 0 0 10px 8px #000;
+  border-radius: 2px;
+}
+
+.ticket-info .ticket {
+  height: 260px;
+  width: 160px;
+  /* border: 1px solid palevioletred; */
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  /* background-color: #6feaf6; */
+  animation: ticket-out 1s forwards;
+  overflow: hidden;
+}
+.ticket-info .ticket > div {
+  animation: ticket-info-out 1s forwards;
+}
+
+.ticket-info .ticket .ticket-head {
+  height: 60px;
+  width: 160px;
+  background-color: black;
+}
+
+.ticket-info .ticket .ticket-head img {
+  height: 30px;
+  width: 30px;
+  margin: 5px;
+  vertical-align: middle;
+}
+
+.ticket-info .ticket .ticket-head span {
+  display: block;
+  font-size: 10px;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.ticket-info .ticket .ticket-container {
+  width: 100%;
+  height: 200px;
+  background-color: #ffa500;
+}
+
+.ticket-info .ticket .ticket-container .left {
+  float: left;
+}
+.ticket-info .ticket .ticket-container .left small,
+.ticket-info .ticket .ticket-container .left span {
+  display: block;
+}
+
+.ticket-info .ticket .ticket-container .left span {
+  font-size: 15px;
+}
+
+.ticket-info .ticket .ticket-container .right {
+  float: right;
+}
+
+.ticket-info .ticket .ticket-container .right small,
+.ticket-info .ticket .ticket-container .right span {
+  display: block;
+}
+
+.ticket-info .ticket .ticket-container span {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+@keyframes ticket-out {
+  from {
+    height: 0;
+  }
+  to {
+    height: 260px;
+  }
+}
+
+@keyframes ticket-info-out {
+  from {
+    transform: translateY(-200px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.ticket-info .button-confirm {
+  position: absolute;
+  bottom: 50px;
+  background-color: #000;
+  display: block;
+  width: 100px;
+  height: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  line-height: 25px;
+  border-radius: 3px;
+  cursor: pointer;
+}

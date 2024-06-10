@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>订票页面</title>
+    <link rel="stylesheet" href="my.css" />
+    <script defer src="my.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <label for="movie-set">选择一个电影:</label>
+      <select name="movies" id="movie-set">
+        <option value="45">复仇者联盟4：终局之战（￥45）</option>
+        <option value="30">夏洛特烦恼（￥30）</option>
+        <option value="35">唐人街探案3（￥35）</option>
+        <option value="69">流浪地球2（￥69）</option>
+      </select>
+    </div>
+    <div class="showcase">
+      <div class="case">
+        <div class="seat"></div>
+        <small>未预定</small>
+      </div>
+      <div class="case">
+        <div class="seat selected"></div>
+        <small>已选择</small>
+      </div>
+      <div class="case">
+        <div class="seat occupied"></div>
+        <small>已预订</small>
+      </div>
+    </div>
+    <div class="container">
+      <div class="screen"></div>
+      <div class="seats">
+        <div class="row">
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+        </div>
+        <div class="row">
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+        </div>
+        <div class="row">
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+        </div>
+        <div class="row">
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+        </div>
+        <div class="row">
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+        </div>
+        <div class="row">
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+          <div class="seat"></div>
+        </div>
+      </div>
+    </div>
+    <div class="button">选好了</div>
+    <div class="selected-coord"></div>
+    <div class="footer">
+      你选了<span class="seat_num">0</span>个座位，总共花费<span
+        class="total_price"
+        >0</span
+      >￥
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="progress hidden">
+      <svg class="progress-svg" width="100" height="100">
+        <!-- 辅助圆环 -->
+        <!-- <circle stroke="#fff"></circle> -->
+
+        <!-- 进度圆环 -->
+        <circle
+          class="progress-circle"
+          stroke="#01FF70"
+          cx="50"
+          cy="50"
+          r="40"
+        ></circle>
+
+        <!-- 对号 -->
+        <g>
+          <path
+            class="path"
+            d="M25 50 L45 70 L75 30"
+            fill="transparent"
+            stroke="#01FF70"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+        </g>
+      </svg>
+      <div class="progress-text"></div>
+    </div>
+    <div class="ticket-info hidden">
+      <div class="exit-ticket">
+        <div class="exit"></div>
+      </div>
+      <div class="ticket">
+        <div class="ticket-head">
+          <img src="./cinema_logo.webp" alt="cinema_logo" />
+          <small>黄金影院</small>
+          <span>复仇者联盟4：终局之战（￥45）</span>
+        </div>
+        <div class="ticket-container">
+          <div class="left">
+            <small>座位：</small>
+            <!-- <span>一排一座</span> -->
+          </div>
+          <div class="right">
+            <small>地点:</small>
+            <span>兰天广场</span>
+            <small>观影时间：</small>
+            <span class="cinema-date">2024-6-10</span>
+            <span class="cinema-time">17:00</span>
+            <small>购票时间：</small>
+            <span class="buy-date">2024-6-10</span>
+            <span class="buy-time">17:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="button-confirm">确认信息</div>
+    </div>
+  </body>
+</html>
